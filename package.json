@@ -1,0 +1,21 @@
+{
+  "name": "protractor-tests",
+  "version": "1.0.0",
+  "description": "Protractor tests",
+  "main": "conf.js",
+  "dependencies": {
+    "os": "^0.1.1",
+    "protractor": "5.2.0",
+    "webdriver-manager": "12.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "protractor conf.js",
+    "postinstall": "webdriver-manager update"
+  },
+  "engines": {
+    "node": "^4.3"
+  },
+  "author": "koros",
+  "license": "ISC"
+}

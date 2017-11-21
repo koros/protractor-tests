@@ -1,0 +1,4 @@
+exports.login = {
+  user: '',
+  password: ''
+}
