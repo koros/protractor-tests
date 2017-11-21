@@ -2,6 +2,7 @@
 # Project Specific
 ######################
 /build/
+secrets.js
 
 ######################
 # Node
