@@ -2,15 +2,6 @@
 var fs = require('fs');
 var secrets = require('./secrets');
 
-// abstract writing screen shot to a file
-function writeScreenShot(data, filename) {
-    var buf = new Buffer(data, 'base64'),
-        stream = fs.createWriteStream(filename);
-
-    stream.write(buf);
-    stream.end();
-}
-
 beforeEach(function() {
 	browser.ignoreSynchronization = true;
 });

@@ -1,4 +1,0 @@
-exports.login = {
-  user: '',
-  password: ''
-}
