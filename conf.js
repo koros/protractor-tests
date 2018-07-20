@@ -15,7 +15,7 @@ if (os.platform() === 'win32') {
 exports.config = {
   framework: 'jasmine',
   seleniumServerJar: prefix + 'node_modules/webdriver-manager/selenium/selenium-server-standalone-3.13.0.jar',
-  specs: ['spec.js', 'client_spec.js'],
+  specs: ['client_spec.js','spec.js'],
 
   onPrepare: function() {
 
