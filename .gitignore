@@ -11,3 +11,4 @@ node_tmp/
 node_modules/
 npm-debug.log.*
 out/
+.idea/

@@ -1,6 +1,6 @@
 // at the top of the test spec:
 var fs = require('fs');
-var secrets = require('./secrets');
+var settings = require('./settings');
 var username = process.env.GP_USER;
 var password = process.env.GP_PASSWORD;
 
@@ -19,7 +19,7 @@ describe('Login', function() {
   	});
 
   	it('should promt for password if left blank', function() {
-		browser.driver.findElement(by.id('EmailAddress')).sendKeys(secrets.fakeAccount.user);
+		browser.driver.findElement(by.id('EmailAddress')).sendKeys(settings.fakeAccount.user);
 		browser.driver.findElement(by.id('Password')).sendKeys('');
 		browser.driver.findElement(by.className('ui-button-large')).click().then(function() {
 	        expect(browser.driver.findElement(by.className('field-validation-error')).getText()).toEqual("The Password field is required.");
@@ -29,8 +29,8 @@ describe('Login', function() {
   	it('should fail to login when wrong credentials are entered', function() {
 		var emailField = browser.driver.findElement(by.id('EmailAddress'));
 		emailField.clear().then(function() {
-			emailField.sendKeys(secrets.fakeAccount.user);
-			browser.driver.findElement(by.id('Password')).sendKeys(secrets.fakeAccount.password);
+			emailField.sendKeys(settings.fakeAccount.user);
+			browser.driver.findElement(by.id('Password')).sendKeys(settings.fakeAccount.password);
 			browser.driver.findElement(by.className('ui-button-large')).click().then(function() {
 			expect(browser.driver.findElement(by.tagName('li')).getText()).toEqual("Incorrect username or password!");
 			}, 10000);

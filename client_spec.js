@@ -1,6 +1,6 @@
 // at the top of the test spec:
 var fs = require('fs');
-var secrets = require('./secrets');
+var settings = require('./settings');
 var username = process.env.GP_USER;
 var password = process.env.GP_PASSWORD;
 
@@ -19,7 +19,7 @@ describe('Login', function() {
   	});
 
   	it('should promt for password if left blank', function() {
-		browser.driver.findElement(by.id('username')).sendKeys(secrets.fakeAccount.user);
+		browser.driver.findElement(by.id('username')).sendKeys(settings.fakeAccount.user);
 		browser.driver.findElement(by.id('password')).sendKeys('');
 		browser.driver.findElement(by.className('btn btn-primary pull-right')).click().then(function() {
 	        expect(browser.driver.findElement(by.className('gp-error  alert alert-danger')).getText()).toEqual("The provided username or password are invalid. Please contact us for assistance and provide as much detail as possible.");
@@ -29,8 +29,8 @@ describe('Login', function() {
   	it('should fail to login when wrong credentials are entered', function() {
 		var emailField = browser.driver.findElement(by.id('username'));
 		emailField.clear().then(function() {
-			emailField.sendKeys(secrets.fakeAccount.user);
-			browser.driver.findElement(by.id('password')).sendKeys(secrets.fakeAccount.password);
+			emailField.sendKeys(settings.fakeAccount.user);
+			browser.driver.findElement(by.id('password')).sendKeys(settings.fakeAccount.password);
 			browser.driver.findElement(by.className('btn btn-primary pull-right')).click().then(function() {
 			expect(browser.driver.findElement(by.className('gp-error  alert alert-danger')).getText()).toEqual("The provided username or password are invalid. Please contact us for assistance and provide as much detail as possible.");
 			}, 10000);
