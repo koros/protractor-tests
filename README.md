@@ -9,7 +9,7 @@ Protractor tests
 ## Setup
 Update the ``conf.js`` file to correctly point the installation path for selenium-server-standalone jar under the directory path `node_modules/webdriver-manager/selenium/` 
 
-For example the current path points to ``node_modules/webdriver-manager/selenium/selenium-server-standalone-3.13.0.jar`` update as necessary to point to the right jar the version keeps changing based on the latest release
+For example the current path points to ``node_modules/webdriver-manager/selenium/selenium-server-standalone-3.13.0.jar`` update as necessary to point to the right jar. The version keeps changing based on the latest release
 
 Credentials such as username and password are read from System variables 
 `````$xslt

@@ -51,4 +51,11 @@ describe('Login', function() {
 		})
   	});
 
+	it('should load my products ', function() {
+		browser.driver.sleep(2000);
+  		browser.get('https://research.geopoll.com/SubscriptionServices/MyProducts');	
+  		expect(browser.getTitle()).toEqual('Survey Research through Mobile - GeoPoll');
+  		20000;
+  	});
+
 });

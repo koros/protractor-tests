@@ -32,7 +32,7 @@ describe('Login', function() {
 			emailField.sendKeys(settings.fakeAccount.user);
 			browser.driver.findElement(by.id('Password')).sendKeys(settings.fakeAccount.password);
 			browser.driver.findElement(by.className('ui-button-large')).click().then(function() {
-			expect(browser.driver.findElement(by.tagName('li')).getText()).toEqual("Incorrect username or password!");
+				expect(browser.driver.findElement(by.tagName('li')).getText()).toEqual("Incorrect username or password!");
 			}, 10000);
 		})
 		
@@ -50,5 +50,15 @@ describe('Login', function() {
 			}, 10000);
 		})
   	});
+
+  	it ('should open the recipients page - blank option', function() {
+  		browser.driver.findElement(by.className('addLink sep-all-orange radiusTopRight')).click().then(function() {
+  			browser.driver.sleep(2000);		
+  			browser.driver.findElement(by.className('ui-button ui-widget ui-state-default ui-corner-all')).click().then(function() {
+  				browser.driver.sleep(2000);
+  				expect(browser.driver.getCurrentUrl()).toMatch('/GeoPoll/Polls/Create');
+  			}, 10000);
+  		})
+  	});  
 
 });
