@@ -62,8 +62,7 @@ describe('Login', function() {
   	});  
 
 	it ('should show error messages for required fields', function() {
-		// element(by.css('div[ng-show=notValid]'));
-  		browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+			browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
   			browser.driver.sleep(2000);	
   			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Poll Name is required!");
   			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Finance Option is required!");
@@ -95,4 +94,22 @@ describe('Login', function() {
   		}, 10000);
   	});
 
+    it ('should select Default Language: from dropdown', function() {
+      browser.driver.findElement(by.id('countries')).click().then(function() {
+        browser.driver.sleep(1000);
+        browser.driver.findElement(by.css('[value="[Location].[Country].&[Kenya]"]')).click().then(function() {
+          browser.driver.sleep(2000);
+          browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+            browser.driver.sleep(2000); 
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Poll Name is required!");
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Finance Option is required!");
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(3)')).getText()).toEqual("Client field is required!");
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(4)')).getText()).toEqual("Project Category is required!");
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(5)')).getText()).toEqual("Finance field is required!");
+            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(6)')).getText()).toEqual("Targeted Completes is required");
+          }, 10000);
+        }, 10000);
+      }, 10000);
+    });
+    
 });
