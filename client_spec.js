@@ -10,12 +10,16 @@ beforeEach(function() {
 
 afterEach(function() {
   	
-});
+});  
 
 describe('Login', function() {
-  	it('should have a title', function() {
-  		browser.get('https://research.geopoll.com/Account/Login');	
-  		expect(browser.getTitle()).toEqual('Survey Research through Mobile - GeoPoll');
+  	it('should load landing page then redirect to login page', function() {
+  		browser.get('https://geopoll.com');	
+  		expect(browser.getTitle()).toEqual('Research Services and Mobile Surveys in Emerging Markets');
+  		browser.driver.sleep(2000);
+  		browser.driver.findElement(by.className('menu-item menu-item-type-custom menu-item-object-custom has-mega-menu')).click().then(function() {
+			expect(browser.driver.getCurrentUrl()).toMatch('https://research.geopoll.com/Account/Login');
+			}, 10000);
   	});
 
   	it('should promt for password if left blank', function() {

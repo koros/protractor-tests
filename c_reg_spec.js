@@ -26,4 +26,11 @@ describe('Login', function() {
    		})
   	});
 
+  	it ('should open the mobile web Home page', function(){
+  		browser.driver.findElement(by.css('[value="0"]')).click().then(function() {
+  			browser.driver.sleep(2000);
+  			expect(browser.driver.getCurrentUrl()).toMatch('https://m.geopoll.com/Home/RegisterPhoneNumber');
+  			expect(browser.getTitle()).toEqual('');
+   			}, 10000)
+  		});
 });
