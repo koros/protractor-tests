@@ -113,6 +113,7 @@ describe('Login', function() {
     });
 
     it ('should add 10 as default number of completes', function(){
+      browser.driver.findElement(by.id('targetedCompletes')).clear();
       browser.driver.findElement(by.id('targetedCompletes')).sendKeys(settings.fakeTargetcompletes.targetCompletes);
         browser.driver.sleep(2000);
         browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
