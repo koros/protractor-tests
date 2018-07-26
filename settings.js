@@ -10,3 +10,7 @@ exports.fakeAccount = {
 exports.fakeTargetcompletes = {
 	targetCompletes: '10'
 }
+
+exports.fakePollname = { 
+	pollName: 'ProTests'
+}
