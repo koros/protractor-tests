@@ -73,17 +73,27 @@ describe('App', function() {
         browser.driver.findElement(by.id('targetedCompletes')).clear();
         browser.driver.findElement(by.id('targetedCompletes')).sendKeys(settings.fakeTargetcompletes.targetCompletes);
         browser.driver.sleep(2000);
-  	});
+        //Add default client 
+	    var clientName =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select')); 
+	    clientName.click().then(function() {
+	    browser.driver.sleep(2000);
+	    var option =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select option:nth-child(3)'));
+	    option.click().then(function() {
+	    browser.driver.sleep(2000);
+	    }, 10000);
+	    });
+
+	});
 
 	it('should select App method and check for required fields', function() { 
 		browser.driver.findElement(by.id('pollmethods')).click().then(function() { 
 			browser.driver.findElement(by.css('[value=App]')).click().then(function() {
-			browser.driver.sleep(10000);
+			browser.driver.sleep(2000);
 			browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() { 
+				browser.driver.sleep(2000);
 				expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Enable Close-Out Message is required for App surveys");
             	expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Public Survey Name is required");
-            	expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(3)')).getText()).toEqual("Client field is required!");
-            	browser.driver.sleep(10000);
+            	browser.driver.sleep(2000);
 				}, 10000);
 			}, 10000);
 		}, 10000);
@@ -94,7 +104,6 @@ describe('App', function() {
         browser.driver.sleep(2000);
         browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() { 
 			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Enable Close-Out Message is required for App surveys");
-            expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Client field is required!");
             browser.driver.sleep(2000);
 		}, 10000);
 	});	

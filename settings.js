@@ -12,7 +12,7 @@ exports.fakeTargetcompletes = {
 }
 
 exports.fakePollname = { 
-	pollName: 'ProTests'
+	pollName: 'ProTest'
 }
 
 exports.fakeNumber = {
@@ -21,4 +21,9 @@ exports.fakeNumber = {
 
 exports.fakePublicname = {
 	publicName: 'ProSurvey'
+}
+
+exports.fakeCloseout = {
+	closed: 'Survey Closed',
+	expired: 'Survey Expired'
 }
