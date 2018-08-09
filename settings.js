@@ -12,7 +12,8 @@ exports.fakeTargetcompletes = {
 }
 
 exports.fakePollname = { 
-	pollName: 'ProTest'
+	pollName: 'ProTest',
+	surveyName: 'ProClient'
 }
 
 exports.fakeNumber = {
