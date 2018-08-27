@@ -13,10 +13,10 @@ afterEach(function() {
 });
 
 describe('Login', function() {
-  	it('should have a title', function() {
+  it('should have a title', function() {
   	 browser.get('https://intranet.geopoll.com/Account/Login');
   	 expect(browser.getTitle()).toEqual('Login');
-  	});
+  });
 
   	it('should promt for password if left blank', function() {
 		browser.driver.findElement(by.id('EmailAddress')).sendKeys(settings.fakeAccount.user);
@@ -76,11 +76,11 @@ describe('Login', function() {
 
   	it ('should select Default Language: from dropdown', function() {
   		browser.driver.findElement(by.id('languages')).click().then(function() {
-  			browser.driver.sleep(2000);
+  			browser.driver.sleep(4000);
   			browser.driver.findElement(by.css('[value="en"]')).click().then(function() {
-  				browser.driver.sleep(2000);
+  				browser.driver.sleep(4000);
   				browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
-		  			browser.driver.sleep(2000);	
+		  			browser.driver.sleep(4000);	
 		  			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Poll Name is required!");
 		  			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Finance Option is required!");
 		  			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(3)')).getText()).toEqual("Country field is required!");
@@ -95,11 +95,11 @@ describe('Login', function() {
 
     it ('should select Default Country: from dropdown', function() {
       browser.driver.findElement(by.id('countries')).click().then(function() {
-        browser.driver.sleep(2000);
+        browser.driver.sleep(4000);
         browser.driver.findElement(by.css('[value="[Location].[Country].&[Kenya]"]')).click().then(function() {
-          browser.driver.sleep(2000);
+          browser.driver.sleep(4000);
           browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
-            browser.driver.sleep(2000); 
+            browser.driver.sleep(4000); 
             expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Poll Name is required!");
             expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Finance Option is required!");
             expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(3)')).getText()).toEqual("Client field is required!");
@@ -157,7 +157,7 @@ describe('Login', function() {
         }, 10000);
     });
 
-    it('should add default client and save', function() { 
+    it('should add default client + save + redirect to Qs page', function() { 
       browser.driver.sleep(2000);
       var clientName =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select')); 
       clientName.click().then(function() {
@@ -167,10 +167,22 @@ describe('Login', function() {
           browser.driver.sleep(2000);
           browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
             browser.driver.sleep(2000);
-            expect(browser.driver.getCurrentUrl()).toMatch('/GeoPoll/Polls/Create');
+            expect(browser.getTitle()).toEqual('Create/Update Poll');
+            browser.driver.sleep(20000);
           }, 10000);
         }, 10000);
       }, 10000);
     });
+
+    it('should add new group', function(){
+      expect(browser.getTitle()).toEqual('Questions');
+      browser.driver.sleep(5000);
+        browser.driver.findElement(by.css('[data-bind="click:addNewQuestionGroup"]')).click().then(function() {
+          browser.driver.sleep(5000);
+            browser.driver.findElement(by.css('[data-bind="click: addNewQuestion, jqButton: {}"]')).click().then(function() {
+            browser.driver.sleep(2000);
+          }, 10000);
+      }, 10000);
+    });    
     
-});    
+});   
