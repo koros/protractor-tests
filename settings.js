@@ -11,9 +11,14 @@ exports.fakeTargetcompletes = {
 	targetCompletes: '10'
 }
 
+exports.costPercomplete = {
+	cost: '10'
+}
+
 exports.fakePollname = { 
 	pollName: 'ProTest',
-	surveyName: 'ProClient'
+	surveyName: 'ProClient',
+	openquestionText: 'Open Text'
 }
 
 exports.fakeNumber = {
