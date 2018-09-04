@@ -25,7 +25,7 @@ describe('Login', function() {
   	it('should promt for password if left blank', function() {
 		browser.driver.findElement(by.id('username')).sendKeys(settings.fakeAccount.user);
 		browser.driver.findElement(by.id('password')).sendKeys('');
-		browser.driver.findElement(by.className('btn btn-primary pull-right')).click().then(function() {
+		browser.driver.findElement(by.css('[type="submit"]')).click().then(function() {
 	        expect(browser.driver.findElement(by.className('gp-error  alert alert-danger')).getText()).toEqual("The provided username or password are invalid. Please contact us for assistance and provide as much detail as possible.");
 	    }, 10000);
   	});
@@ -35,7 +35,7 @@ describe('Login', function() {
 		emailField.clear().then(function() {
 			emailField.sendKeys(settings.fakeAccount.user);
 			browser.driver.findElement(by.id('password')).sendKeys(settings.fakeAccount.password);
-			browser.driver.findElement(by.className('btn btn-primary pull-right')).click().then(function() {
+			browser.driver.findElement(by.css('[type="submit"]')).click().then(function() {
 			expect(browser.driver.findElement(by.className('gp-error  alert alert-danger')).getText()).toEqual("The provided username or password are invalid. Please contact us for assistance and provide as much detail as possible.");
 			}, 10000);
 		})
@@ -48,7 +48,7 @@ describe('Login', function() {
 		emailField.clear().then(function() {
 			emailField.sendKeys(username);
 			passwordField.sendKeys(password);
-			browser.driver.findElement(by.className('btn btn-primary pull-right')).click().then(function() {
+			browser.driver.findElement(by.css('[type="submit"]')).click().then(function() {
 				browser.driver.sleep(2000);
 				expect(browser.driver.getCurrentUrl()).toMatch('/SubscriptionServices');
 			}, 10000);

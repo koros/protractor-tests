@@ -37,6 +37,7 @@ describe('App', function() {
   			browser.driver.findElement(by.className('ui-button ui-widget ui-state-default ui-corner-all')).click().then(function() {
   				browser.driver.sleep(2000);
   				expect(browser.driver.getCurrentUrl()).toMatch('/GeoPoll/Polls/Create');
+  				browser.driver.sleep(10000);
   			}, 10000);
   		})
   	});  
@@ -74,14 +75,21 @@ describe('App', function() {
         browser.driver.findElement(by.id('targetedCompletes')).sendKeys(settings.fakeTargetcompletes.targetCompletes);
         browser.driver.sleep(2000);
         //Add default client 
-	    var clientName =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select')); 
-	    clientName.click().then(function() {
-	    browser.driver.sleep(2000);
-	    var option =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select option:nth-child(3)'));
-	    option.click().then(function() {
-	    browser.driver.sleep(2000);
-	    }, 10000);
+	    var clientName =  browser.driver.findElement(by.css('.form-group:nth-child(3)')); 
+      	clientName.click().then(function() {
+        	browser.driver.sleep(2000);
+        	var option =  browser.driver.findElement(by.css('.form-group:nth-child(3) option:nth-child(11)'));
+        	option.click().then(function() {
+	    	}, 10000);
 	    });
+	    //Add cost per complete
+     	browser.driver.findElement(by.id('costPerComplete')).clear();
+        browser.driver.findElement(by.id('costPerComplete')).sendKeys(settings.costPercomplete.cost);
+        browser.driver.sleep(2000);
+      	//Add frequency 
+      	browser.driver.findElement(by.css('[value="Once Off"]')).click().then(function() {
+        browser.driver.sleep(2000);
+        }, 10000);
 
 	});
 
