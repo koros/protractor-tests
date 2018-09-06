@@ -17,7 +17,7 @@ exports.costPercomplete = {
 
 exports.fakePollname = { 
 	pollName: 'ProTest',
-	surveyName: 'ProClient',
+	surveyName: 'ProSurvey',
 	openquestionText: 'Open Text'
 }
 
@@ -25,9 +25,6 @@ exports.fakeNumber = {
 	number: 'tt88yy55'
 }
 
-exports.fakePublicname = {
-	publicName: 'ProSurvey'
-}
 
 exports.fakeCloseout = {
 	closed: 'Survey Closed',

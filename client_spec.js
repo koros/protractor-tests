@@ -49,17 +49,27 @@ describe('Login', function() {
 			emailField.sendKeys(username);
 			passwordField.sendKeys(password);
 			browser.driver.findElement(by.css('[type="submit"]')).click().then(function() {
-				browser.driver.sleep(2000);
+				browser.driver.sleep(5000);
 				expect(browser.driver.getCurrentUrl()).toMatch('/SubscriptionServices');
 			}, 10000);
 		})
   	});
 
 	it('should load my products ', function() {
-		browser.driver.sleep(2000);
-  		browser.get('https://research.geopoll.com/SubscriptionServices/MyProducts');	
-  		expect(browser.getTitle()).toEqual('Survey Research through Mobile - GeoPoll');
-  		20000;
+		browser.driver.sleep(5000);
+  		browser.driver.findElement(by.css('a[href*="/SubscriptionServices/MyProducts"]')).click().then(function() {
+  			expect(browser.getTitle()).toEqual('Survey Research through Mobile - GeoPoll');
+  			20000;
+  		}, 10000);
+  	});
+
+  	it('should log out', function() { 
+  		browser.driver.findElement(by.className('dropdown')).click().then(function() {
+  			browser.driver.sleep(5000);
+	  		browser.driver.findElement(by.css('a[href*="/Account/Logout"]')).click().then(function() {
+		  		expect(browser.driver.getCurrentUrl()).toMatch('https://www.geopoll.com');
+		  	}, 10000);
+	  	}, 10000);
   	});
 
 });

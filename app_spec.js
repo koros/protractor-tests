@@ -106,14 +106,51 @@ describe('App', function() {
 			}, 10000);
 		}, 10000);
 	});
-	
-	it('should add public name', function() { 
-        browser.driver.findElement(by.id('publicname')).sendKeys(settings.fakePublicname.publicName);
-        browser.driver.sleep(2000);
-        browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() { 
-			expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Enable Close-Out Message is required for App surveys");
-            browser.driver.sleep(2000);
+
+	it('should add public survey name', function() {
+		browser.driver.findElement(by.id('publicname')).sendKeys(settings.fakePollname.surveyName);
+     	browser.driver.sleep(2000);
+     	browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() { 
+     		expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Enable Close-Out Message is required for App surveys");
+			browser.driver.sleep(2000);
 		}, 10000);
+	});
+	
+	it('should check enable close out', function() { 
+        browser.driver.findElement(by.css('[data-bind="checked: IsClosePollMessageEnabled, disable:cantEdit(poll.State)"]')).click().then(function() { 
+	        browser.driver.sleep(2000);
+	        browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() { 
+				expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Expire Survey Message is required for App surveys");
+	            browser.driver.sleep(2000);
+			}, 10000);
+	    }, 10000);
 	});	
+
+	it('should add closed textbox', function() { 
+        browser.driver.findElement(by.css('[data-bind=" jqButton: {}, click: addPollMessage"]')).click().then(function() { 
+        	browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+				expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Message Text is required for all Close-Out messages.");
+				expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Expire Survey Message is required form App surveys");
+		        browser.driver.sleep(2000);
+			}, 10000);
+        }, 10000);
+    });
+
+	it('should add expired textbox', function() { 
+        browser.driver.findElement(by.css('[value="Expired Survey Message"]')).click().then(function() { 
+        	browser.driver.findElement(by.css('[data-bind=" jqButton: {}, click: addPollMessage"]')).click().then(function() { 
+	        	browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+					expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Message Text is required for all Close-Out messages.");
+					expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Message Text is required for all Close-Out messages.");
+			        browser.driver.sleep(2000);
+				}, 10000);
+			}, 10000);	
+	    }, 10000);
+    });
+
+	it('should add closed text', function() {
+		browser.driver.findElement(by.css('[data-bind="value: message"]')).sendKeys(settings.fakeCloseout.closed);
+		browser.driver.findElement(by.css('[data-bind="value: message"]')).sendKeys(settings.fakeCloseout.expired);
+	});
 
 });
