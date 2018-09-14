@@ -14,11 +14,11 @@ afterEach(function() {
 
 describe('Login', function() {
   it('should have a title', function() {
-     browser.get('https://intranet.geopoll.com/Account/Login');
+     browser.get('https://intranet.geopoll.com');
      expect(browser.getTitle()).toEqual('Login');
   });
 
-    it('should promt for password if left blank', function() {
+    /*it('should promt for password if left blank', function() {
     browser.driver.findElement(by.id('EmailAddress')).sendKeys(settings.fakeAccount.user);
     browser.driver.findElement(by.id('Password')).sendKeys('');
     browser.driver.findElement(by.className('ui-button-large')).click().then(function() {
@@ -35,7 +35,7 @@ describe('Login', function() {
         expect(browser.driver.findElement(by.tagName('li')).getText()).toEqual("Incorrect username or password!");
       }, 10000);
     })
-    });
+    });*/
 
     it('should login', function() {
     var emailField = browser.driver.findElement(by.id('EmailAddress'));
@@ -201,19 +201,37 @@ describe('Login', function() {
 
     it ('should add default frequency', function() {
       browser.driver.findElement(by.css('[value="Once Off"]')).click().then(function() {
-      browser.driver.sleep(2000);
-      browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
-        browser.driver.sleep(2000);
-          expect(browser.getTitle()).toEqual('Create/Update Poll');
-        }, 10000);
+      browser.driver.sleep(5000);
       }, 10000);
+    });
+
+    it('should add drl', function(){ 
+      browser.driver.findElement(by.css('[data-bind="click:addNewDrlConfirmation"]')).click().then(function() { 
+        browser.driver.findElement(by.css('[data-bind="visible:!isCloning(),jqButton: {}, click: addNewDrl"]')).click().then(function() {
+          browser.driver.sleep(2000);
+          browser.driver.findElement(by.className('required txtBox')).clear();
+          browser.driver.findElement(by.className('required txtBox')).sendKeys(settings.fakeTargetcompletes.targetCount);
+          browser.driver.sleep(2000);
+          browser.driver.findElement(by.css('button')).click().then(function() { 
+            browser.driver.sleep(5000);
+            browser.driver.findElement(by.className('ui-dialog-buttonset')).click().then(function() {
+              browser.driver.sleep(2000);
+              browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+                browser.driver.sleep(2000);
+                expect(browser.getTitle()).toEqual('Create/Update Poll');
+                browser.driver.sleep(20000);
+              }, 10000);
+            }, 10000);
+          }, 10000);
+        }, 10000);
+      },10000);
     });
 
     it('should add new group', function(){
       expect(browser.getTitle()).toEqual('Questions');
-      browser.driver.sleep(5000);
+      browser.driver.sleep(2000);
         browser.driver.findElement(by.css('[data-bind="click:addNewQuestionGroup"]')).click().then(function() {
-          browser.driver.sleep(5000);
+          browser.driver.sleep(2000);
             browser.driver.findElement(by.css('[data-bind="click: addNewQuestion, jqButton: {}"]')).click().then(function() {
             browser.driver.sleep(2000);
           }, 10000);

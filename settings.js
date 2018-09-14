@@ -8,7 +8,8 @@ exports.fakeAccount = {
 }
 
 exports.fakeTargetcompletes = {
-	targetCompletes: '10'
+	targetCompletes: '10',
+	targetCount: '20'
 }
 
 exports.costPercomplete = {
@@ -22,7 +23,8 @@ exports.fakePollname = {
 }
 
 exports.fakeNumber = {
-	number: 'tt88yy55'
+	number: 'tt88yy55',
+	appNo: '254726389967'
 }
 
 
