@@ -157,7 +157,7 @@ describe('Login', function() {
         }, 10000);
     });
 
-    it('should add default client + save + redirect to Qs page', function() { 
+    /*it('should add default client + save + redirect to Qs page', function() { 
       browser.driver.sleep(2000);
       var clientName =  browser.driver.findElement(by.css('.reg-input:nth-child(6) select')); 
       clientName.click().then(function() {
@@ -172,9 +172,48 @@ describe('Login', function() {
           }, 10000);
         }, 10000);
       }, 10000);
+    });*/
+
+    it('should add default client', function() { 
+      browser.driver.sleep(2000);
+      var clientName =  browser.driver.findElement(by.css('.form-group:nth-child(3)')); 
+      clientName.click().then(function() {
+        browser.driver.sleep(2000);
+        var option =  browser.driver.findElement(by.css('.form-group:nth-child(3) option:nth-child(11)'));
+        option.click().then(function() {
+          browser.driver.sleep(2000);
+          browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+            browser.driver.sleep(2000);
+              expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Cost Per Complete required. Must be greater than -1");
+              expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(2)')).getText()).toEqual("Frequency is required");
+          }, 10000);
+        }, 10000);
+      }, 10000);
+    });
+
+    it ('should add 10 as default cost/complete', function() {
+      browser.driver.findElement(by.id('costPerComplete')).clear();
+      browser.driver.findElement(by.id('costPerComplete')).sendKeys(settings.costPercomplete.cost);
+      browser.driver.sleep(2000);
+      browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+        browser.driver.sleep(2000);
+        expect(browser.driver.findElement(by.css('.validation-summary-errors li:nth-child(1)')).getText()).toEqual("Frequency is required");
+      }, 10000);
+    });    
+
+    it ('should add default frequency', function() {
+      browser.driver.findElement(by.css('[value="Once Off"]')).click().then(function() {
+      browser.driver.sleep(5000);
+        browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
+            browser.driver.sleep(2000);
+            expect(browser.getTitle()).toEqual('Create/Update Poll');
+            browser.driver.sleep(10000);
+      }, 10000);
+      }, 10000);
     });
 
     it('should add new group', function(){
+      browser.driver.sleep(10000);
       expect(browser.getTitle()).toEqual('Questions');
       browser.driver.sleep(5000);
         browser.driver.findElement(by.css('[data-bind="click:addNewQuestionGroup"]')).click().then(function() {
