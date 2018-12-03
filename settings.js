@@ -32,3 +32,7 @@ exports.fakeCloseout = {
 	closed: 'Survey Closed',
 	expired: 'Survey Expired'
 }
+
+exports.fakeBlastmsgno = {
+	noofMsg: '50'
+}
