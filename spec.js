@@ -44,7 +44,7 @@ describe('Login', function() {
       emailField.sendKeys(username);
       passwordField.sendKeys(password);
       browser.driver.findElement(by.className('ui-button-large')).click().then(function() {
-       browser.driver.sleep(2000);
+       browser.driver.sleep(5000);
        expect(browser.driver.getCurrentUrl()).toMatch('/GeoPoll/Polls');
       }, 10000);
     })
@@ -177,7 +177,7 @@ describe('Login', function() {
       var clientName =  browser.driver.findElement(by.css('.form-group:nth-child(3)')); 
       clientName.click().then(function() {
         browser.driver.sleep(2000);
-        var option =  browser.driver.findElement(by.css('.form-group:nth-child(3) option:nth-child(11)'));
+        var option =  browser.driver.findElement(by.css('.form-group:nth-child(3) option:nth-child(13)'));
         option.click().then(function() {
           browser.driver.sleep(2000);
           browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
@@ -211,23 +211,23 @@ describe('Login', function() {
           browser.driver.sleep(2000);
           browser.driver.findElement(by.className('required txtBox')).clear();
           browser.driver.findElement(by.className('required txtBox')).sendKeys(settings.fakeTargetcompletes.targetCount);
-          browser.driver.sleep(2000);
-          browser.driver.findElement(by.css('button')).click().then(function() { 
-            browser.driver.sleep(5000);
-            browser.driver.findElement(by.className('ui-dialog-buttonset')).click().then(function() {
-              browser.driver.sleep(2000);
+          browser.driver.sleep(10000);
+          //browser.driver.findElement(by.css('button')).click().then(function() { 
+            //browser.driver.sleep(5000);
+            //browser.driver.findElement(by.className('ui-dialog-buttonset')).click().then(function() {
+              //browser.driver.sleep(2000);
               browser.driver.findElement(by.css('[data-bind="click:saveAndContinue"]')).click().then(function() {
                 browser.driver.sleep(2000);
                 expect(browser.getTitle()).toEqual('Create/Update Poll');
-                browser.driver.sleep(20000);
-              }, 10000);
-            }, 10000);
+              //}, 10000);
+            //}, 10000);
           }, 10000);
         }, 10000);
       },10000);
     });
 
     it('should add new group', function(){
+      browser.driver.sleep(20000);
       expect(browser.getTitle()).toEqual('Questions');
       browser.driver.sleep(2000);
         browser.driver.findElement(by.css('[data-bind="click:addNewQuestionGroup"]')).click().then(function() {
